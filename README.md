@@ -90,13 +90,7 @@ Using standardized z-score deviation thresholds ($\pm 0.5\sigma$) from populatio
 
 ### 2. Preprocessing & Selective Log1p Transformation
 A unified Scikit-Learn `Pipeline` guarantees deterministic transformations:
-```python
-Pipeline(steps=[
-    ("imputer", SimpleImputer(strategy="median")),
-    ("log_transform", FunctionTransformer(self._log_transform_subset, validate=False)),
-    ("scaler", StandardScaler()),
-])
-```
+
 * **Median Imputation**: Null values in `MINIMUM_PAYMENTS` and `CREDIT_LIMIT` are imputed using training medians.
 * **Selective `np.log1p`**: Bounded frequency columns (e.g. $[0, 1]$) are preserved as linear, while heavily right-skewed monetary amounts (`skew > 1`) undergo log transformation to stabilize variance.
 * **StandardScaler**: Scales all attributes to zero mean and unit variance.
