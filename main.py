@@ -1,6 +1,9 @@
+import os
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
 from src.pipeline.predict_pipeline import PredictPipeline
@@ -32,6 +35,14 @@ app = FastAPI(
     description="Predicts which behavioral segment a credit card customer belongs to.",
     version="1.0.0",
     lifespan=lifespan,
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 
@@ -77,3 +88,8 @@ def predict(customer: CustomerFeatures):
 
     result = pipeline.predict(customer.model_dump())
     return result
+
+
+frontend_dir = os.path.join(os.path.dirname(__file__), "frontend")
+if os.path.exists(frontend_dir):
+    app.mount("/", StaticFiles(directory=frontend_dir, html=True), name="frontend")

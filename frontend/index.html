@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SegmentAI — Precision Credit Card Customer Intelligence</title>
+  <meta name="description" content="AI-driven behavioral customer segmentation using unsupervised KMeans and Random Forest classification for credit card portfolios." />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Glowing Ambient Background Effects -->
+  <div class="ambient-glow glow-top"></div>
+  <div class="ambient-glow glow-hero-left"></div>
+  <div class="ambient-glow glow-hero-right"></div>
+  <div class="ambient-grid"></div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#" class="brand-logo">
+        <span class="logo-icon"><i class="fa-solid fa-cube"></i></span>
+        <span class="logo-text">Segment<span class="highlight">IQ</span></span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#overview">Overview</a>
+        <a href="#personas">Personas</a>
+        <a href="#predictor">Live Predictor</a>
+        <a href="#analytics">Cluster Analytics</a>
+        <a href="#how-it-works">How It Works</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="#predictor" class="btn btn-primary btn-sm">Launch Predictor</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="overview">
+      <div class="container hero-container">
+        
+        <!-- Ambient Curved Light Wings (SVG) -->
+        <div class="hero-light-curves">
+          <svg viewBox="0 0 1200 400" fill="none" xmlns="http://www.w3.org/2000/svg" class="curve-svg">
+            <path d="M50 380C250 200 450 120 600 120C750 120 950 200 1150 380" stroke="url(#blue-gradient-1)" stroke-width="2.5" stroke-opacity="0.6"/>
+            <path d="M150 400C320 250 480 170 600 170C720 170 880 250 1050 400" stroke="url(#blue-gradient-2)" stroke-width="1.8" stroke-opacity="0.4"/>
+            <path d="M580 80L580 180M600 50L600 190M620 80L620 180" stroke="#3b82f6" stroke-width="1.5" stroke-opacity="0.3"/>
+            <defs>
+              <linearGradient id="blue-gradient-1" x1="50" y1="250" x2="1150" y2="250" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#3b82f6" stop-opacity="0"/>
+                <stop offset="0.5" stop-color="#60a5fa" stop-opacity="0.9"/>
+                <stop offset="1" stop-color="#3b82f6" stop-opacity="0"/>
+              </linearGradient>
+              <linearGradient id="blue-gradient-2" x1="150" y1="285" x2="1050" y2="285" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#1d4ed8" stop-opacity="0"/>
+                <stop offset="0.5" stop-color="#38bdf8" stop-opacity="0.7"/>
+                <stop offset="1" stop-color="#1d4ed8" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+
+        <!-- Pill Badge -->
+        <div class="pill-badge">
+          <span class="pill-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+          <span>ML-Powered Behavioral Intelligence</span>
+        </div>
+
+        <!-- Hero Headline -->
+        <h1 class="hero-title">
+          Decode Customer Behavior<br />
+          Before The <span class="gradient-text">Market Reacts</span>
+        </h1>
+
+        <!-- Hero Subtitle -->
+        <p class="hero-subtitle">
+          Intelligently segment credit card portfolios to identify high-value spenders, mitigate liquidity risks, 
+          and unlock personalized cardholder engagement in real time.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="hero-cta-group">
+          <a href="#predictor" class="btn btn-primary btn-glow">
+            <span>Try Live Predictor</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+          <a href="#analytics" class="btn btn-secondary">
+            <span>Explore Analytics</span>
+          </a>
+        </div>
+
+        <!-- Vertical accent ticks -->
+        <div class="hero-ticks">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+
+        <!-- Metric Stat Cards -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-label">Portfolios Analyzed</div>
+            <div class="stat-value">8,950+</div>
+            <div class="stat-desc">Credit Card Accounts</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Model Accuracy</div>
+            <div class="stat-value">98.4%</div>
+            <div class="stat-desc">Held-Out Verification</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Inference Latency</div>
+            <div class="stat-value">&lt; 5ms</div>
+            <div class="stat-desc">Real-Time Scoring</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- WHAT IS SEGMENTIQ / PERSONAS SHOWCASE -->
+    <section class="section personas-section" id="personas">
+      <div class="container">
+        <div class="section-header text-center">
+          <h2 class="section-title">What Is <span class="gradient-text">SegmentIQ?</span></h2>
+          <p class="section-subtitle">
+            An automated intelligence suite that uncovers hidden financial behavioral patterns to drive personalized banking strategies.
+          </p>
+        </div>
+
+        <!-- Persona Feature Grid (Matching Reference Design Cards) -->
+        <div class="personas-grid">
+          
+          <!-- Card 1: Segment 0 -->
+          <div class="persona-card" id="cardSegment0">
+            <div class="card-glow-bg"></div>
+            <div class="persona-header">
+              <div class="persona-icon icon-orange">
+                <i class="fa-solid fa-money-bill-transfer"></i>
+              </div>
+              <div class="persona-badge badge-orange">Segment 0</div>
+            </div>
+            <h3 class="persona-title">Frequent Cash-Advance Users</h3>
+            <p class="persona-desc">
+              High reliance on cash withdrawals over standard retail purchases, combined with low full-payment rates.
+            </p>
+            <div class="persona-traits">
+              <span class="trait-tag"><i class="fa-solid fa-arrow-up text-danger"></i> High Cash Advance</span>
+              <span class="trait-tag"><i class="fa-solid fa-arrow-down text-warning"></i> Low Card Spend</span>
+              <span class="trait-tag"><i class="fa-solid fa-shield-halved text-info"></i> Liquidity Seeker</span>
+            </div>
+            <div class="persona-footer">
+              <span class="strategy-label"><i class="fa-solid fa-bullseye"></i> Strategy:</span>
+              <span class="action-hint">Risk & Repayment Targeting</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Segment 1 -->
+          <div class="persona-card featured-card" id="cardSegment1">
+            <div class="card-glow-bg"></div>
+            <div class="featured-ribbon">High Value</div>
+            <div class="persona-header">
+              <div class="persona-icon icon-blue">
+                <i class="fa-solid fa-crown"></i>
+              </div>
+              <div class="persona-badge badge-blue">Segment 1</div>
+            </div>
+            <h3 class="persona-title">High Spenders</h3>
+            <p class="persona-desc">
+              Frequent one-off and installment card purchases with strong credit limits and high active transactional engagement.
+            </p>
+            <div class="persona-traits">
+              <span class="trait-tag"><i class="fa-solid fa-arrow-up text-success"></i> High Spend Volume</span>
+              <span class="trait-tag"><i class="fa-solid fa-arrow-up text-success"></i> High Transaction Frequency</span>
+              <span class="trait-tag"><i class="fa-solid fa-gem text-primary"></i> Premium Tier</span>
+            </div>
+            <div class="persona-footer">
+              <span class="strategy-label"><i class="fa-solid fa-bullseye"></i> Strategy:</span>
+              <span class="action-hint">Rewards & Credit Line Upsell</span>
+            </div>
+          </div>
+
+          <!-- Card 3: Segment 2 -->
+          <div class="persona-card" id="cardSegment2">
+            <div class="card-glow-bg"></div>
+            <div class="persona-header">
+              <div class="persona-icon icon-purple">
+                <i class="fa-solid fa-moon"></i>
+              </div>
+              <div class="persona-badge badge-purple">Segment 2</div>
+            </div>
+            <h3 class="persona-title">Low Activity / Dormant</h3>
+            <p class="persona-desc">
+              Minimal account balance, low card usage frequency, yet maintains clean payment habits when active.
+            </p>
+            <div class="persona-traits">
+              <span class="trait-tag"><i class="fa-solid fa-arrow-down text-muted"></i> Low Balance</span>
+              <span class="trait-tag"><i class="fa-solid fa-arrow-down text-muted"></i> Low Activity</span>
+              <span class="trait-tag"><i class="fa-solid fa-check text-success"></i> Disciplined Payers</span>
+            </div>
+            <div class="persona-footer">
+              <span class="strategy-label"><i class="fa-solid fa-bullseye"></i> Strategy:</span>
+              <span class="action-hint">Reactivation & Incentive Offers</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE PREDICTOR STUDIO -->
+    <section class="section predictor-section" id="predictor">
+      <div class="container">
+        
+        <div class="section-header text-center">
+          <div class="pill-badge pill-sm">
+            <i class="fa-solid fa-bolt"></i> Interactive Segmentation Studio
+          </div>
+          <h2 class="section-title">Classify Any Customer <span class="gradient-text">In Real Time</span></h2>
+          <p class="section-subtitle">
+            Select a customer preset or tweak financial metrics to test the machine learning segmentation pipeline.
+          </p>
+        </div>
+
+        <!-- Presets Bar -->
+        <div class="preset-toolbar">
+          <span class="preset-title"><i class="fa-solid fa-sliders"></i> Quick Load Preset:</span>
+          <div class="preset-buttons">
+            <button type="button" class="preset-btn active" data-preset="high_spender">
+              <i class="fa-solid fa-gem"></i> High Spender
+            </button>
+            <button type="button" class="preset-btn" data-preset="cash_advance">
+              <i class="fa-solid fa-hand-holding-dollar"></i> Cash Advance Heavy
+            </button>
+            <button type="button" class="preset-btn" data-preset="dormant">
+              <i class="fa-solid fa-bed"></i> Dormant / Low Activity
+            </button>
+            <button type="button" class="preset-btn" data-preset="balanced">
+              <i class="fa-solid fa-scale-balanced"></i> Balanced Cardholder
+            </button>
+          </div>
+        </div>
+
+        <div class="predictor-grid">
+          
+          <!-- Input Form Column -->
+          <div class="predictor-card form-panel">
+            <div class="panel-header">
+              <h3><i class="fa-solid fa-user-gear"></i> Customer Behavioral Metrics</h3>
+              <div class="panel-controls">
+                <div class="currency-selector-wrapper">
+                  <label for="currencySelect" class="currency-label"><i class="fa-solid fa-coins"></i> Currency</label>
+                  <select id="currencySelect" class="currency-dropdown">
+                    <option value="USD" selected>USD ($)</option>
+                    <option value="EUR">EUR (€)</option>
+                    <option value="GBP">GBP (£)</option>
+                    <option value="INR">INR (₹)</option>
+                    <option value="CAD">CAD ($)</option>
+                    <option value="AUD">AUD ($)</option>
+                    <option value="JPY">JPY (¥)</option>
+                  </select>
+                </div>
+                <button type="button" id="resetFormBtn" class="btn-ghost-sm" title="Reset to Defaults">
+                  <i class="fa-solid fa-arrow-rotate-left"></i> Reset
+                </button>
+              </div>
+            </div>
+
+            <form id="predictionForm" class="form-grid">
+              
+              <div class="form-group">
+                <label for="inputBalance">Balance</label>
+                <input type="number" id="inputBalance" step="any" min="0" required />
+                <span class="hint">Total balance currently owed</span>
+              </div>
+
+              <div class="form-group">
+                <label for="inputBalanceFreq">Balance Frequency</label>
+                <input type="number" id="inputBalanceFreq" step="any" min="0" max="1" required />
+                <span class="hint">Score between 0.0 and 1.0</span>
+              </div>
+
+              <div class="form-group">
+                <label for="inputOneoff">One-off Purchases</label>
+                <input type="number" id="inputOneoff" step="any" min="0" required />
+                <span class="hint">Single maximum purchase sum</span>
+              </div>
+
+              <div class="form-group">
+                <label for="inputInstallments">Installment Purchases</label>
+                <input type="number" id="inputInstallments" step="any" min="0" required />
+                <span class="hint">Sum done in installments</span>
+              </div>
+
+              <div class="form-group">
+                <label for="inputCashAdvance">Cash Advance</label>
+                <input type="number" id="inputCashAdvance" step="any" min="0" required />
+                <span class="hint">Cash withdrawal amount</span>
+              </div>
+
+              <div class="form-group">
+                <label for="inputPurchasesFreq">Purchases Frequency</label>
+                <input type="number" id="inputPurchasesFreq" step="any" min="0" max="1" required />
+                <span class="hint">Frequency score (0.0 to 1.0)</span>
+              </div>
+
+              <div class="form-group">
+                <label for="inputOneoffFreq">One-off Purchases Freq</label>
+                <input type="number" id="inputOneoffFreq" step="any" min="0" max="1" required />
+                <span class="hint">One-off frequency (0.0 to 1.0)</span>
+              </div>
+
+              <div class="form-group">
+                <label for="inputCashAdvanceFreq">Cash Advance Freq</label>
+                <input type="number" id="inputCashAdvanceFreq" step="any" min="0" required />
+                <span class="hint">Cash advance frequency rate</span>
+              </div>
+
+              <div class="form-group">
+                <label for="inputPurchasesTrx">Purchases Transactions</label>
+                <input type="number" id="inputPurchasesTrx" step="1" min="0" required />
+                <span class="hint">Total count of purchases</span>
+              </div>
+
+              <div class="form-group">
+                <label for="inputCreditLimit">Credit Limit</label>
+                <input type="number" id="inputCreditLimit" step="any" min="0" required />
+                <span class="hint">User credit line limit</span>
+              </div>
+
+              <div class="form-group">
+                <label for="inputPayments">Total Payments</label>
+                <input type="number" id="inputPayments" step="any" min="0" required />
+                <span class="hint">Total payments made</span>
+              </div>
+
+              <div class="form-group">
+                <label for="inputMinPayments">Minimum Payments</label>
+                <input type="number" id="inputMinPayments" step="any" min="0" required />
+                <span class="hint">Minimum payments sum</span>
+              </div>
+
+              <div class="form-group">
+                <label for="inputPrcFull">Full Payment % (0 - 1)</label>
+                <input type="number" id="inputPrcFull" step="any" min="0" max="1" required />
+                <span class="hint">% of full balance paid</span>
+              </div>
+
+              <div class="form-group">
+                <label for="inputTenure">Tenure (Months)</label>
+                <input type="number" id="inputTenure" step="1" min="0" max="12" required />
+                <span class="hint">Credit card service months (1 - 12)</span>
+              </div>
+
+              <div class="form-action-full">
+                <button type="submit" id="predictBtn" class="btn btn-primary btn-block btn-glow">
+                  <span id="predictBtnText"><i class="fa-solid fa-microchip"></i> Run ML Segmentation</span>
+                  <span id="predictBtnLoader" class="loader hidden"></span>
+                </button>
+              </div>
+
+            </form>
+          </div>
+
+          <!-- Prediction Result & Live Radar Column -->
+          <div class="predictor-card result-panel">
+            <div class="panel-header">
+              <h3><i class="fa-solid fa-chart-pie"></i> Segmentation Result</h3>
+              <span class="badge-pill" id="resultStatusTag">Ready for Prediction</span>
+            </div>
+
+            <!-- Segment Result Banner -->
+            <div class="result-banner" id="resultBanner">
+              <div class="result-segment-badge" id="resSegmentBadge">Segment 1</div>
+              <h2 class="result-title" id="resSegmentTitle">High Spenders</h2>
+              <p class="result-desc" id="resSegmentDesc">
+                Characterized by frequent retail purchases and robust transactional activity.
+              </p>
+              
+              <div class="result-strategy-box">
+                <span class="sub"><i class="fa-solid fa-bullseye"></i> Recommended Persona Strategy</span>
+                <strong id="resStrategy">Credit Upsell & Premium Perks</strong>
+              </div>
+            </div>
+
+            <!-- Real-Time Radar Chart Visualization -->
+            <div class="radar-container">
+              <div class="chart-header">
+                <h4><i class="fa-solid fa-spider"></i> Behavioral Footprint vs Centroids</h4>
+                <span class="chart-legend-hint">Z-Score Benchmark</span>
+              </div>
+              <div class="canvas-wrapper">
+                <canvas id="radarChart"></canvas>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CLUSTER ANALYTICS & VISUALIZATIONS SECTION -->
+    <section class="section analytics-section" id="analytics">
+      <div class="container">
+        
+        <div class="section-header text-center">
+          <div class="pill-badge pill-sm">
+            <i class="fa-solid fa-chart-line"></i> Deep Portfolio Analytics
+          </div>
+          <h2 class="section-title">Cluster <span class="gradient-text">Visualizations & Insights</span></h2>
+          <p class="section-subtitle">
+            Interactive comparative analysis across all behavioral segments discovered in the credit card portfolio.
+          </p>
+        </div>
+
+        <div class="analytics-grid">
+          
+          <!-- Chart Card 1: Cohort Distribution -->
+          <div class="analytics-card">
+            <div class="card-glow-bg"></div>
+            <div class="chart-card-header">
+              <div>
+                <h3>Portfolio Distribution</h3>
+                <p class="text-muted">Proportion of customers across identified clusters</p>
+              </div>
+              <div class="chart-badge">k = 3 Clusters</div>
+            </div>
+            <div class="chart-body doughnut-body">
+              <canvas id="distributionChart"></canvas>
+            </div>
+            <div class="chart-footer-stats">
+              <div class="stat-pill"><span class="dot bg-orange"></span> Cash Advance: <strong>36.1%</strong></div>
+              <div class="stat-pill"><span class="dot bg-blue"></span> High Spenders: <strong>34.9%</strong></div>
+              <div class="stat-pill"><span class="dot bg-purple"></span> Dormant: <strong>29.0%</strong></div>
+            </div>
+          </div>
+
+          <!-- Chart Card 2: Key Feature Centroid Comparison -->
+          <div class="analytics-card">
+            <div class="card-glow-bg"></div>
+            <div class="chart-card-header">
+              <div>
+                <h3>Key Behavioral Metric Centroids</h3>
+                <p class="text-muted">Standardized z-score deviations from population mean</p>
+              </div>
+              <div class="chart-badge">Z-Scores</div>
+            </div>
+            <div class="chart-body">
+              <canvas id="centroidBarChart"></canvas>
+            </div>
+            <div class="chart-footer-stats">
+              <span class="text-muted"><i class="fa-solid fa-circle-info"></i> Values &gt; 0 indicate above-average behavior; &lt; 0 indicate below average.</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS / PIPELINE ARCHITECTURE -->
+    <section class="section architecture-section" id="how-it-works">
+      <div class="container">
+        
+        <div class="section-header text-center">
+          <h2 class="section-title">How It <span class="gradient-text">Works</span></h2>
+          <p class="section-subtitle">
+            An end-to-end production ML pipeline designed for robust unsupervised clustering and fast sub-millisecond serving.
+          </p>
+        </div>
+
+        <!-- 6 Step Grid (Matching Reference Image "How It Works" 6 boxes) -->
+        <div class="steps-grid">
+          
+          <div class="step-card">
+            <div class="step-icon"><i class="fa-solid fa-filter"></i></div>
+            <h4 class="step-title">1. Multicollinearity Filtering</h4>
+            <p class="step-desc">
+              Removed highly correlated features (&gt; 0.8 correlation) to prevent distortion in Euclidean distance calculations.
+            </p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-icon"><i class="fa-solid fa-calculator"></i></div>
+            <h4 class="step-title">2. Selective log1p &amp; Scaling</h4>
+            <p class="step-desc">
+              Imputed medians, applied np.log1p selectively to 11 right-skewed columns, and standardized via StandardScaler.
+            </p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-icon"><i class="fa-solid fa-diagram-project"></i></div>
+            <h4 class="step-title">3. Silhouette Optimization</h4>
+            <p class="step-desc">
+              Iterated KMeans across k ∈ [3, 8], logging Silhouette and Davies-Bouldin metrics to pinpoint optimal k=3.
+            </p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-icon"><i class="fa-solid fa-id-card-clip"></i></div>
+            <h4 class="step-title">4. Persona Profiling</h4>
+            <p class="step-desc">
+              Inspected centroid z-scores against ±0.5 std dev thresholds to generate plain-English segment personas.
+            </p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-icon"><i class="fa-solid fa-tree"></i></div>
+            <h4 class="step-title">5. Fast-Inference Classifier</h4>
+            <p class="step-desc">
+              Trained a Random Forest (200 trees) on KMeans labels, reaching 98.4% accuracy for instant sub-millisecond scoring.
+            </p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-icon"><i class="fa-solid fa-server"></i></div>
+            <h4 class="step-title">6. Low-Latency REST API</h4>
+            <p class="step-desc">
+              Packaged with FastAPI using a "load once, serve many" lifespan context manager and Pydantic schema validation.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <a href="#" class="brand-logo">
+          <span class="logo-icon"><i class="fa-solid fa-cube"></i></span>
+          <span class="logo-text">Segment<span class="highlight">IQ</span></span>
+        </a>
+        <p class="footer-tagline">
+          Precision machine learning customer segmentation for modern banking portfolios.
+        </p>
+      </div>
+
+      <div class="footer-meta">
+        <div class="tech-stack-badges">
+          <span class="tech-badge"><i class="fa-brands fa-python"></i> Python 3.13</span>
+          <span class="tech-badge"><i class="fa-solid fa-gears"></i> Scikit-Learn</span>
+          <span class="tech-badge"><i class="fa-solid fa-bolt"></i> FastAPI</span>
+          <span class="tech-badge"><i class="fa-solid fa-chart-simple"></i> Chart.js</span>
+        </div>
+        <p class="copyright">
+          © 2026 Credit Card Customer Segmentation Engine. Production Ready.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
