@@ -1,0 +1,27 @@
+[ 2026-09-18 11:55:33,757 ] 18 root - INFO - === Training pipeline started ===
+[ 2026-09-18 11:55:33,757 ] 17 root - INFO - Entered the data ingestion component
+[ 2026-09-18 11:55:33,772 ] 20 root - INFO - Read raw dataset with shape (8950, 18)
+[ 2026-09-18 11:55:33,816 ] 34 root - INFO - Saved ingested data to artifacts\data\data.csv
+[ 2026-09-18 11:55:33,887 ] 44 root - INFO - Train/test split complete
+[ 2026-09-18 11:55:33,947 ] 55 root - INFO - Loaded train (7160, 14) and test (1790, 14) data
+[ 2026-09-18 11:55:34,191 ] 73 root - INFO - Saved transformed train/test features
+[ 2026-09-18 11:55:34,194 ] 18 root - INFO - Saved object to artifacts\models\preprocessor.pkl
+[ 2026-09-18 11:55:34,194 ] 80 root - INFO - Saved preprocessor object to artifacts\models\preprocessor.pkl
+[ 2026-09-18 11:55:34,221 ] 117 root - INFO - Loaded features with shape (7160, 14)
+[ 2026-09-18 11:55:35,299 ] 36 root - INFO - k=3: silhouette=0.2310, davies_bouldin=1.5872
+[ 2026-09-18 11:55:36,320 ] 36 root - INFO - k=4: silhouette=0.2219, davies_bouldin=1.6079
+[ 2026-09-18 11:55:37,325 ] 36 root - INFO - k=5: silhouette=0.2136, davies_bouldin=1.6089
+[ 2026-09-18 11:55:38,341 ] 36 root - INFO - k=6: silhouette=0.2027, davies_bouldin=1.5634
+[ 2026-09-18 11:55:39,437 ] 36 root - INFO - k=7: silhouette=0.2101, davies_bouldin=1.4560
+[ 2026-09-18 11:55:40,353 ] 36 root - INFO - k=8: silhouette=0.2082, davies_bouldin=1.4608
+[ 2026-09-18 11:55:40,353 ] 40 root - INFO - Selected k=3 (silhouette=0.2310)
+[ 2026-09-18 11:55:40,383 ] 18 root - INFO - Saved object to artifacts\models\cluster_model.pkl
+[ 2026-09-18 11:55:40,383 ] 124 root - INFO - Saved cluster model to artifacts\models\cluster_model.pkl
+[ 2026-09-18 11:55:40,389 ] 130 root - INFO - Saved cluster profiles to artifacts\models\cluster_profiles.json
+[ 2026-09-18 11:55:40,389 ] 132 root - INFO -   Cluster 0 (n=2579): frequent cash-advance users
+[ 2026-09-18 11:55:40,389 ] 132 root - INFO -   Cluster 1 (n=2498): high spenders
+[ 2026-09-18 11:55:40,389 ] 132 root - INFO -   Cluster 2 (n=2083): average / mixed behavior
+[ 2026-09-18 11:55:41,610 ] 106 root - INFO - Segment classifier held-out accuracy vs cluster labels: 0.9581
+[ 2026-09-18 11:55:42,790 ] 18 root - INFO - Saved object to artifacts\models\model.pkl
+[ 2026-09-18 11:55:42,790 ] 136 root - INFO - Saved segment classifier to artifacts\models\model.pkl
+[ 2026-09-18 11:55:42,793 ] 31 root - INFO - === Training pipeline completed successfully ===

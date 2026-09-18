@@ -1,0 +1,8 @@
+[ 2026-09-18 11:30:00,463 ] 17 root - INFO - Entered the data ingestion component
+[ 2026-09-18 11:30:00,482 ] 20 root - INFO - Read raw dataset with shape (8950, 18)
+[ 2026-09-18 11:30:00,564 ] 34 root - INFO - Saved ingested data to artifacts\data\data.csv
+[ 2026-09-18 11:30:00,633 ] 44 root - INFO - Train/test split complete
+[ 2026-09-18 11:30:00,702 ] 55 root - INFO - Loaded train (7160, 14) and test (1790, 14) data
+[ 2026-09-18 11:30:01,338 ] 73 root - INFO - Saved transformed train/test features
+[ 2026-09-18 11:30:01,344 ] 18 root - INFO - Saved object to artifacts\models\preprocessor.pkl
+[ 2026-09-18 11:30:01,344 ] 80 root - INFO - Saved preprocessor object to artifacts\models\preprocessor.pkl

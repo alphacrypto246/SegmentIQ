@@ -1,0 +1,4 @@
+[ 2026-09-18 11:25:40,423 ] 17 root - INFO - Entered the data ingestion component
+[ 2026-09-18 11:25:40,458 ] 20 root - INFO - Read raw dataset with shape (8950, 18)
+[ 2026-09-18 11:25:40,558 ] 31 root - INFO - Saved ingested data to artifacts\data.csv
+[ 2026-09-18 11:25:40,632 ] 41 root - INFO - Train/test split complete

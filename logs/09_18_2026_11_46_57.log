@@ -1,0 +1,27 @@
+[ 2026-09-18 11:46:58,325 ] 18 root - INFO - === Training pipeline started ===
+[ 2026-09-18 11:46:58,325 ] 17 root - INFO - Entered the data ingestion component
+[ 2026-09-18 11:46:58,351 ] 20 root - INFO - Read raw dataset with shape (8950, 18)
+[ 2026-09-18 11:46:58,458 ] 34 root - INFO - Saved ingested data to artifacts\data\data.csv
+[ 2026-09-18 11:46:58,519 ] 44 root - INFO - Train/test split complete
+[ 2026-09-18 11:46:58,571 ] 55 root - INFO - Loaded train (7160, 14) and test (1790, 14) data
+[ 2026-09-18 11:46:58,763 ] 73 root - INFO - Saved transformed train/test features
+[ 2026-09-18 11:46:58,766 ] 18 root - INFO - Saved object to artifacts\models\preprocessor.pkl
+[ 2026-09-18 11:46:58,766 ] 80 root - INFO - Saved preprocessor object to artifacts\models\preprocessor.pkl
+[ 2026-09-18 11:46:58,805 ] 114 root - INFO - Loaded features with shape (7160, 14)
+[ 2026-09-18 11:46:59,851 ] 36 root - INFO - k=3: silhouette=0.2310, davies_bouldin=1.5872
+[ 2026-09-18 11:47:01,184 ] 36 root - INFO - k=4: silhouette=0.2219, davies_bouldin=1.6079
+[ 2026-09-18 11:47:02,586 ] 36 root - INFO - k=5: silhouette=0.2136, davies_bouldin=1.6089
+[ 2026-09-18 11:47:03,719 ] 36 root - INFO - k=6: silhouette=0.2027, davies_bouldin=1.5634
+[ 2026-09-18 11:47:04,841 ] 36 root - INFO - k=7: silhouette=0.2101, davies_bouldin=1.4560
+[ 2026-09-18 11:47:05,761 ] 36 root - INFO - k=8: silhouette=0.2082, davies_bouldin=1.4608
+[ 2026-09-18 11:47:05,761 ] 40 root - INFO - Selected k=3 (silhouette=0.2310)
+[ 2026-09-18 11:47:05,889 ] 18 root - INFO - Saved object to artifacts\models\cluster_model.pkl
+[ 2026-09-18 11:47:05,890 ] 121 root - INFO - Saved cluster model to artifacts\models\cluster_model.pkl
+[ 2026-09-18 11:47:05,943 ] 127 root - INFO - Saved cluster profiles to artifacts\models\cluster_profiles.json
+[ 2026-09-18 11:47:05,943 ] 129 root - INFO -   Cluster 0 (n=2579): high spenders, low payment ratio (risk segment)
+[ 2026-09-18 11:47:05,943 ] 129 root - INFO -   Cluster 1 (n=2498): high spenders, frequent cash-advance users, reliably pays in full
+[ 2026-09-18 11:47:05,943 ] 129 root - INFO -   Cluster 2 (n=2083): high spenders, frequent cash-advance users, reliably pays in full
+[ 2026-09-18 11:47:06,868 ] 103 root - INFO - Segment classifier held-out accuracy vs cluster labels: 0.9581
+[ 2026-09-18 11:47:08,359 ] 18 root - INFO - Saved object to artifacts\models\model.pkl
+[ 2026-09-18 11:47:08,360 ] 133 root - INFO - Saved segment classifier to artifacts\models\model.pkl
+[ 2026-09-18 11:47:08,362 ] 31 root - INFO - === Training pipeline completed successfully ===

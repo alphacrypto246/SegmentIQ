@@ -1,0 +1,62 @@
+{
+  "0": {
+    "size": 2579,
+    "description": "frequent cash-advance users",
+    "mean_features": {
+      "BALANCE": 0.58,
+      "BALANCE_FREQUENCY": 0.26,
+      "ONEOFF_PURCHASES": -0.5,
+      "INSTALLMENTS_PURCHASES": -0.85,
+      "CASH_ADVANCE": 0.87,
+      "PURCHASES_FREQUENCY": -0.95,
+      "ONEOFF_PURCHASES_FREQUENCY": -0.53,
+      "CASH_ADVANCE_FREQUENCY": 0.74,
+      "PURCHASES_TRX": -0.96,
+      "CREDIT_LIMIT": -0.07,
+      "PAYMENTS": 0.05,
+      "MINIMUM_PAYMENTS": 0.41,
+      "PRC_FULL_PAYMENT": -0.44,
+      "TENURE": -0.12
+    }
+  },
+  "1": {
+    "size": 2498,
+    "description": "high spenders",
+    "mean_features": {
+      "BALANCE": 0.4,
+      "BALANCE_FREQUENCY": 0.43,
+      "ONEOFF_PURCHASES": 0.88,
+      "INSTALLMENTS_PURCHASES": 0.63,
+      "CASH_ADVANCE": -0.24,
+      "PURCHASES_FREQUENCY": 0.85,
+      "ONEOFF_PURCHASES_FREQUENCY": 0.95,
+      "CASH_ADVANCE_FREQUENCY": -0.22,
+      "PURCHASES_TRX": 0.95,
+      "CREDIT_LIMIT": 0.36,
+      "PAYMENTS": 0.45,
+      "MINIMUM_PAYMENTS": 0.31,
+      "PRC_FULL_PAYMENT": 0.04,
+      "TENURE": 0.23
+    }
+  },
+  "2": {
+    "size": 2083,
+    "description": "low activity / dormant",
+    "mean_features": {
+      "BALANCE": -1.19,
+      "BALANCE_FREQUENCY": -0.84,
+      "ONEOFF_PURCHASES": -0.44,
+      "INSTALLMENTS_PURCHASES": 0.3,
+      "CASH_ADVANCE": -0.78,
+      "PURCHASES_FREQUENCY": 0.16,
+      "ONEOFF_PURCHASES_FREQUENCY": -0.48,
+      "CASH_ADVANCE_FREQUENCY": -0.65,
+      "PURCHASES_TRX": 0.05,
+      "CREDIT_LIMIT": -0.35,
+      "PAYMENTS": -0.61,
+      "MINIMUM_PAYMENTS": -0.88,
+      "PRC_FULL_PAYMENT": 0.49,
+      "TENURE": -0.13
+    }
+  }
+}
