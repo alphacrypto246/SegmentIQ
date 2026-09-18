@@ -48,21 +48,21 @@ Banks and financial institutions often struggle to effectively differentiate cre
 
 ```mermaid
 flowchart TD
-    A[Raw Dataset: CC_GENERAL.csv] --> B[Data Ingestion Component]
-    B -->|Filter Correlated Features & Drop CUST_ID| C[Train / Test Split 80:20]
-    C --> D[Data Transformation Component]
-    D -->|Median Imputation + Selective log1p + StandardScaler| E[Fitted Preprocessor Pipeline]
-    E --> F[Model Trainer Component]
-    F -->|KMeans Grid Search k in 3..8| G[Optimal k=3 via Silhouette Score]
-    G --> H[Z-Score Centroid Profiler]
-    H -->|Persist Metadata| I[cluster_profiles.json]
-    G --> J[Surrogate Random Forest Classifier]
-    J -->|98.4% Accuracy on Held-Out Test| K[model.pkl]
+    A["Raw Dataset:<br/>CC_GENERAL.csv"] --> B["Data Ingestion Component"]
+    B -->|"Filter Correlated Features<br/>& Drop CUST_ID"| C["Train / Test Split (80:20)"]
+    C --> D["Data Transformation Component"]
+    D -->|"Median Imputation +<br/>log1p + StandardScaler"| E["Fitted Preprocessor Pipeline"]
+    E --> F["Model Trainer Component"]
+    F -->|"KMeans Grid Search<br/>(k in 3..8)"| G["Optimal k=3 via<br/>Silhouette Score"]
+    G --> H["Z-Score Centroid Profiler"]
+    H -->|"Persist Metadata"| I["cluster_profiles.json"]
+    G --> J["Surrogate Random<br/>Forest Classifier"]
+    J -->|"98.4% Accuracy<br/>on Test Split"| K["model.pkl"]
     
-    subgraph Serving Layer
-        K & E & I --> L[PredictPipeline & Lifespan Loader]
-        L --> M[FastAPI REST API: POST /predict]
-        M <--> N[Dark Glassmorphic Web Dashboard & Live Studio]
+    subgraph Serving Layer ["Serving Layer"]
+        K & E & I --> L["PredictPipeline &<br/>Lifespan Loader"]
+        L --> M["FastAPI REST API:<br/>POST /predict"]
+        M <--> N["Dark Glassmorphic<br/>Web Dashboard"]
     end
 ```
 
